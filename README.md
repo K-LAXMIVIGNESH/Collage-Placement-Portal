@@ -1,7 +1,7 @@
 # PlaceX: College Placement Management Portal
 
 <p align="center">
-  <img src="assets/login-ui.png" alt="PlaceX Logo and Login" width="85%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);" />
+  <img src="assets/login-ui.png" alt="PlaceX Logo and Login" width="85%" />
 </p>
 
 <p align="center">
@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Database-PostgreSQL%2014+-336791?style=for-the-badge&logo=postgresql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JavaScript-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
-  <img src="https://img.shields.io/badge/Architecture-3--Tier%20Client--Server-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Normalization-BCNF%20Compliant-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Database-PostgreSQL%2014+-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JavaScript-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Frontend" />
+  <img src="https://img.shields.io/badge/Architecture-3--Tier%20Client--Server-blue?style=for-the-badge" alt="Architecture" />
+  <img src="https://img.shields.io/badge/Normalization-BCNF%20Compliant-success?style=for-the-badge" alt="BCNF" />
 </p>
 
 ---
@@ -24,7 +24,7 @@
 3. [System Requirements & Architecture](#3-system-requirements--architecture)
 4. [ER Diagram & UML Class Diagram](#4-er-diagram--uml-class-diagram)
 5. [Relational Schema Mapping & Integrity Constraints](#5-relational-schema-mapping--integrity-constraints)
-6. [Normalization & Functional Dependencies (1NF → BCNF)](#6-normalization--functional-dependencies-1nf--bcnf)
+6. [Normalization & Functional Dependencies (1NF to BCNF)](#6-normalization--functional-dependencies-1nf-to-bcnf)
 7. [Methodology & Database Design](#7-methodology--database-design)
 8. [Advanced SQL Queries & Analytical Operations](#8-advanced-sql-queries--analytical-operations)
 9. [Installation, Setup & Execution Instructions](#9-installation-setup--execution-instructions)
@@ -61,7 +61,7 @@ In higher educational institutions, campus recruitment drives represent a pivota
 Traditional placement workflows predominantly depend on fragmented Google Sheets, manual record-keeping, and decentralized communication channels (emails, notice boards). This legacy paradigm suffers from critical shortcomings:
 1. **Data Redundancy & Anomalies:** Redundant student profiles lead to insertion, update, and deletion anomalies across department spreadsheets.
 2. **Labor-Intensive Eligibility Verification:** Placement cell staff manually cross-reference student CGPA, historical backlogs, branch rules, and skill evaluations against company cutoffs, leading to human error and missed deadlines.
-3. **Lack of Lifecycle Traceability:** Students and administrators cannot track real-time application progressions through multi-tier interview rounds (applied $\rightarrow$ shortlisted $\rightarrow$ technical round $\rightarrow$ HR round $\rightarrow$ offer issued).
+3. **Lack of Lifecycle Traceability:** Students and administrators cannot track real-time application progressions through multi-tier interview rounds (applied → shortlisted → technical round → HR round → offer issued).
 4. **Suboptimal Reporting & Placement Intelligence:** Placement officers struggle to aggregate real-time metrics (placement percentages, branch-wise recruitment statistics, CTC distributions, average/highest packages).
 
 ### 2.3 Proposed Solution & Core Objectives
@@ -105,7 +105,7 @@ The application adheres strictly to the classic **3-Tier Client-Server Architect
 |                  (Node.js & Express.js REST Microservices)              |
 |   - Controllers & Route Handlers (/api/students, /api/drives, etc.)     |
 |   - Data Validation, Parameter Sanitization & Business Logic Rules      |
-|   - Connection Pooling via `pg` (node-postgres)                         |
+|   - Connection Pooling via pg (node-postgres)                           |
 +-------------------------------------------------------------------------+
                                     │
                                     │ TCP / IP Port 5432 (SQL Protocols)
@@ -139,7 +139,7 @@ The Entity-Relationship model establishes the real-world entities, attributes, a
 * `student` **1 : M** `offer` (A student may receive one or multiple placement offers)
 * `company` **1 : M** `offer` (A company issues job offers to successful candidates)
 
-#### Mermaid ER Diagram
+#### Native Mermaid ER Diagram
 ```mermaid
 erDiagram
     STUDENT ||--o{ APPLIES : "submits"
@@ -217,7 +217,7 @@ erDiagram
     }
 
     ELIGIBILITY_ALLOWED_BRANCH {
-        bigint eligibility_id PK_FK
+        bigint eligibility_id FK
         varchar allowed_branch PK
     }
 
@@ -230,8 +230,8 @@ erDiagram
     }
 
     APPLIES {
-        bigint student_id PK_FK
-        bigint drive_id PK_FK
+        bigint student_id FK
+        bigint drive_id FK
     }
 
     APPLICATION {
@@ -263,8 +263,8 @@ erDiagram
 ```
 
 <p align="center">
-  <em>Figure: Hand-Drawn Conceptual ER Diagram</em><br>
-  <img src="assets/er-diagram-handdrawn.png" alt="Hand-Drawn ER Diagram" width="70%" style="border-radius: 8px; border: 1px solid #ccc;" />
+  <em>Figure: Conceptual ER Diagram (Design Sheet)</em><br>
+  <img src="assets/er-diagram-handdrawn.png" alt="Conceptual ER Diagram" width="75%" />
 </p>
 
 ---
@@ -272,18 +272,19 @@ erDiagram
 ### 4.2 UML Class Diagram
 The UML Class Diagram illustrates class specifications, attribute typings, visibility, and structural associations between objects in the PlaceX system.
 
+#### Native Mermaid UML Class Diagram
 ```mermaid
 classDiagram
     direction TB
 
     class Student {
-        +bigint student_id [PK]
-        +varchar(40) name
-        +varchar(10) gender
+        +bigint student_id
+        +string name
+        +string gender
         +int age
-        +varchar(15) degree
-        +varchar(30) branch
-        +numeric(4,2) cgpa
+        +string degree
+        +string branch
+        +numeric cgpa
         +int backlogs
         +int internships
         +int certifications
@@ -291,114 +292,114 @@ classDiagram
         +int communication_skills
         +int aptitude_score
         +int projects
-        +varchar(30) placement_status
-        +varchar(30) company_type
-        +numeric(6,2) package_lpa
-        +varchar(100) email
-        +varchar(15) phone
-        +varchar(100) password
-        +varchar(50) city
-        +varchar(50) state
+        +string placement_status
+        +string company_type
+        +numeric package_lpa
+        +string email
+        +string phone
+        +string password
+        +string city
+        +string state
     }
 
     class Company {
-        +bigint company_id [PK]
-        +varchar(50) company_name
-        +varchar(50) company_type
-        +varchar(50) industry
-        +varchar(50) location
-        +varchar(100) website
-        +varchar(100) email
-        +varchar(15) phone
+        +bigint company_id
+        +string company_name
+        +string company_type
+        +string industry
+        +string location
+        +string website
+        +string email
+        +string phone
     }
 
     class PlacementOfficer {
-        +bigint officer_id [PK]
-        +varchar(100) officer_name
-        +varchar(100) email
-        +varchar(15) phone
-        +varchar(100) password
+        +bigint officer_id
+        +string officer_name
+        +string email
+        +string phone
+        +string password
     }
 
     class PlacementDrive {
-        +bigint drive_id [PK]
-        +bigint company_id [FK]
-        +varchar(50) job_role
-        +numeric(6,2) package_lpa
+        +bigint drive_id
+        +bigint company_id
+        +string job_role
+        +numeric package_lpa
         +int vacancies
         +date drive_date
         +date last_date_to_apply
     }
 
     class Eligibility {
-        +bigint eligibility_id [PK]
-        +bigint drive_id [FK, UNIQUE]
-        +numeric(4,2) minimum_cgpa
+        +bigint eligibility_id
+        +bigint drive_id
+        +numeric minimum_cgpa
         +int maximum_backlogs
     }
 
     class EligibilityAllowedBranch {
-        +bigint eligibility_id [PK, FK]
-        +varchar(30) allowed_branch [PK]
+        +bigint eligibility_id
+        +string allowed_branch
     }
 
     class HR {
-        +bigint hr_id [PK]
-        +bigint company_id [FK]
-        +varchar(100) hr_name
-        +varchar(100) email
-        +varchar(15) phone
+        +bigint hr_id
+        +bigint company_id
+        +string hr_name
+        +string email
+        +string phone
     }
 
     class Applies {
-        +bigint student_id [PK, FK]
-        +bigint drive_id [PK, FK]
+        +bigint student_id
+        +bigint drive_id
     }
 
     class Application {
-        +bigint application_id [PK]
-        +bigint student_id [FK]
-        +bigint drive_id [FK]
-        +bigint officer_id [FK]
+        +bigint application_id
+        +bigint student_id
+        +bigint drive_id
+        +bigint officer_id
         +date application_date
-        +varchar(30) application_status
+        +string application_status
     }
 
     class Interview {
-        +bigint interview_id [PK]
-        +bigint application_id [FK]
-        +varchar(50) interview_round
+        +bigint interview_id
+        +bigint application_id
+        +string interview_round
         +date interview_date
-        +varchar(30) result
-        +varchar(200) remarks
+        +string result
+        +string remarks
     }
 
     class Offer {
-        +bigint offer_id [PK]
-        +bigint student_id [FK]
-        +bigint company_id [FK]
+        +bigint offer_id
+        +bigint student_id
+        +bigint company_id
         +date offer_date
-        +numeric(6,2) package_lpa
-        +varchar(30) offer_status
+        +numeric package_lpa
+        +string offer_status
     }
 
-    Company "1" --> "0..*" PlacementDrive : conducts
+    Company "1" --> "*" PlacementDrive : conducts
     PlacementDrive "1" --> "1" Eligibility : has
-    Eligibility "1" --> "1..*" EligibilityAllowedBranch : allows
-    Company "1" --> "1..*" HR : employs
-    Student "1" --> "0..*" Applies : submits
-    PlacementDrive "1" --> "0..*" Applies : receives
-    Student "1" --> "0..*" Application : applies_for
-    PlacementDrive "1" --> "0..*" Application : associated_with
-    PlacementOfficer "1" --> "0..*" Application : oversees
-    Application "1" --> "0..*" Interview : progresses_to
-    Student "1" --> "0..*" Offer : receives
-    Company "1" --> "0..*" Offer : issues
+    Eligibility "1" --> "*" EligibilityAllowedBranch : allows
+    Company "1" --> "*" HR : employs
+    Student "1" --> "*" Applies : submits
+    PlacementDrive "1" --> "*" Applies : receives
+    Student "1" --> "*" Application : applies_for
+    PlacementDrive "1" --> "*" Application : associated_with
+    PlacementOfficer "1" --> "*" Application : oversees
+    Application "1" --> "*" Interview : progresses_to
+    Student "1" --> "*" Offer : receives
+    Company "1" --> "*" Offer : issues
 ```
 
 <p align="center">
   <em>Figure: Formal UML Class Diagram from Design Phase</em><br>
-  <img src="assets/uml-diagram.png" alt="UML Class Diagram" width="85%" style="border-radius: 8px; border: 1px solid #ccc;" />
+  <img src="assets/uml-diagram.png" alt="UML Class Diagram" width="85%" />
 </p>
 
 ---
@@ -406,27 +407,19 @@ classDiagram
 ## 5. Relational Schema Mapping & Integrity Constraints
 
 ### 5.1 Relational Schema Definitions
-The conceptual ER model is mapped to 11 normalized relational schemas:
+The conceptual model maps directly to 11 relational schemas:
 
-1. **Student** ($\underline{\text{student\_id}}$, name, gender, age, degree, branch, cgpa, backlogs, internships, certifications, coding_skills, communication_skills, aptitude_score, projects, placement_status, company_type, package_lpa, email, phone, password, city, state)
-2. **Company** ($\underline{\text{company\_id}}$, company_name, company_type, industry, location, website, email, phone)
-3. **Placement_Officer** ($\underline{\text{officer\_id}}$, officer_name, email, phone, password)
-4. **Placement_Drive** ($\underline{\text{drive\_id}}$, $\text{company\_id}^*$, job_role, package_lpa, vacancies, drive_date, last_date_to_apply)  
-   *$\text{company\_id} \rightarrow \text{Company(company\_id)}$*
-5. **Eligibility** ($\underline{\text{eligibility\_id}}$, $\text{drive\_id}^*$, minimum_cgpa, maximum_backlogs)  
-   *$\text{drive\_id} \rightarrow \text{Placement\_Drive(drive\_id)}$ [UNIQUE]*
-6. **Eligibility_Allowed_Branch** ($\underline{\text{eligibility\_id}^*, \text{allowed\_branch}}$)  
-   *$\text{eligibility\_id} \rightarrow \text{Eligibility(eligibility\_id)}$*
-7. **HR** ($\underline{\text{hr\_id}}$, $\text{company\_id}^*$, hr_name, email, phone)  
-   *$\text{company\_id} \rightarrow \text{Company(company\_id)}$*
-8. **Applies** ($\underline{\text{student\_id}^*, \text{drive\_id}^*}$)  
-   *$\text{student\_id} \rightarrow \text{Student(student\_id)}$*, *$\text{drive\_id} \rightarrow \text{Placement\_Drive(drive\_id)}$*
-9. **Application** ($\underline{\text{application\_id}}$, $\text{student\_id}^*$, $\text{drive\_id}^*$, $\text{officer\_id}^*$, application_date, application_status)  
-   *$\text{student\_id} \rightarrow \text{Student(student\_id)}$*, *$\text{drive\_id} \rightarrow \text{Placement\_Drive(drive\_id)}$*, *$\text{officer\_id} \rightarrow \text{Placement\_Officer(officer\_id)}$*
-10. **Interview** ($\underline{\text{interview\_id}}$, $\text{application\_id}^*$, interview_round, interview_date, result, remarks)  
-    *$\text{application\_id} \rightarrow \text{Application(application\_id)}$*
-11. **Offer** ($\underline{\text{offer\_id}}$, $\text{student\_id}^*$, $\text{company\_id}^*$, offer_date, package_lpa, offer_status)  
-    *$\text{student\_id} \rightarrow \text{Student(student\_id)}$*, *$\text{company\_id} \rightarrow \text{Company(company\_id)}$*
+1. **Student** (`student_id` [PK], `name`, `gender`, `age`, `degree`, `branch`, `cgpa`, `backlogs`, `internships`, `certifications`, `coding_skills`, `communication_skills`, `aptitude_score`, `projects`, `placement_status`, `company_type`, `package_lpa`, `email`, `phone`, `password`, `city`, `state`)
+2. **Company** (`company_id` [PK], `company_name`, `company_type`, `industry`, `location`, `website`, `email`, `phone`)
+3. **Placement_Officer** (`officer_id` [PK], `officer_name`, `email`, `phone`, `password`)
+4. **Placement_Drive** (`drive_id` [PK], `company_id` [FK → Company.company_id], `job_role`, `package_lpa`, `vacancies`, `drive_date`, `last_date_to_apply`)
+5. **Eligibility** (`eligibility_id` [PK], `drive_id` [FK → Placement_Drive.drive_id, UNIQUE], `minimum_cgpa`, `maximum_backlogs`)
+6. **Eligibility_Allowed_Branch** (`eligibility_id` [FK → Eligibility.eligibility_id], `allowed_branch`) — *(Composite PK: `(eligibility_id, allowed_branch)`)*
+7. **HR** (`hr_id` [PK], `company_id` [FK → Company.company_id], `hr_name`, `email`, `phone`)
+8. **Applies** (`student_id` [FK → Student.student_id], `drive_id` [FK → Placement_Drive.drive_id]) — *(Composite PK: `(student_id, drive_id)`)*
+9. **Application** (`application_id` [PK], `student_id` [FK → Student.student_id], `drive_id` [FK → Placement_Drive.drive_id], `officer_id` [FK → Placement_Officer.officer_id], `application_date`, `application_status`)
+10. **Interview** (`interview_id` [PK], `application_id` [FK → Application.application_id], `interview_round`, `interview_date`, `result`, `remarks`)
+11. **Offer** (`offer_id` [PK], `student_id` [FK → Student.student_id], `company_id` [FK → Company.company_id], `offer_date`, `package_lpa`, `offer_status`)
 
 ---
 
@@ -445,38 +438,41 @@ The table below specifies every constraint enforced across the database relation
 
 ---
 
-## 6. Normalization & Functional Dependencies (1NF → BCNF)
+## 6. Normalization & Functional Dependencies (1NF to BCNF)
 
-### 6.1 Evolution from Initial Design (First Review $\rightarrow$ Final Schema)
+### 6.1 Evolution from Initial Design (First Review to Final Schema)
 During the initial design phase (Review 1), the `eligibility` relation was structured as:
-$$\text{eligibility}(\underline{\text{eligibility\_id}}, \text{drive\_id}, \text{minimum\_cgpa}, \text{maximum\_backlogs}, \text{allowed\_branch})$$
+
+```
+Eligibility(eligibility_id [PK], drive_id, minimum_cgpa, maximum_backlogs, allowed_branch)
+```
 where `allowed_branch` contained non-atomic comma-separated strings (e.g., `'CSE, IT, ECE'`). 
 
 * **First Normal Form (1NF) Violation:** 1NF requires all attributes to be atomic (single-valued). Comma-delimited values violate atomicity and impede index-backed relational filtering.
-* **Decomposition Solution:** Decomposed `eligibility` into:
-  1. $\text{eligibility}(\underline{\text{eligibility\_id}}, \text{drive\_id}, \text{minimum\_cgpa}, \text{maximum\_backlogs})$
-  2. $\text{eligibility\_allowed\_branch}(\underline{\text{eligibility\_id}, \text{allowed\_branch}})$
+* **Decomposition Solution:** Decomposed `eligibility` into two atomic, normalized relations:
+  1. `Eligibility(eligibility_id [PK], drive_id [FK, UNIQUE], minimum_cgpa, maximum_backlogs)`
+  2. `Eligibility_Allowed_Branch((eligibility_id, allowed_branch) [Composite PK])`
 
 ### 6.2 Normal Form Step-by-Step Justification
 * **First Normal Form (1NF):** Every column contains atomic values, each row is unique, and domain constraints are enforced across all 11 tables.
-* **Second Normal Form (2NF):** The schema is in 1NF and contains no **partial functional dependencies**—in composite key tables (`applies` and `eligibility_allowed_branch`), all non-key attributes (if any) are fully dependent on the entire composite primary key.
+* **Second Normal Form (2NF):** The schema is in 1NF and contains no **partial functional dependencies**—in composite key tables (`applies` and `eligibility_allowed_branch`), all non-key attributes are fully dependent on the entire composite primary key.
 * **Third Normal Form (3NF):** The schema is in 2NF and exhibits no **transitive dependencies** ($X \rightarrow Y$ and $Y \rightarrow Z$ where $Z$ is a non-prime attribute). All non-prime attributes depend solely and directly on candidate keys.
 * **Boyce-Codd Normal Form (BCNF):** A relation $R$ is in BCNF if and only if for every non-trivial functional dependency $X \rightarrow Y$, the determinant $X$ is a **superkey**.
 
 ### 6.3 Functional Dependency & Candidate Key Analysis
 | Relation | Candidate Key(s) | Verified Functional Dependencies (FDs) | Normal Form |
 | :--- | :--- | :--- | :---: |
-| **student** | `student_id` | $\text{student\_id} \rightarrow \text{all other student attributes}$ | **BCNF** |
-| **company** | `company_id` | $\text{company\_id} \rightarrow \text{company\_name, company\_type, industry, location, website, email, phone}$ | **BCNF** |
-| **placement_officer** | `officer_id` | $\text{officer\_id} \rightarrow \text{officer\_name, email, phone, password}$ | **BCNF** |
-| **placement_drive** | `drive_id` | $\text{drive\_id} \rightarrow \text{company\_id, job\_role, package\_lpa, vacancies, drive\_date, last\_date\_to\_apply}$ | **BCNF** |
-| **eligibility** | `eligibility_id`, `drive_id` | $\text{eligibility\_id} \rightarrow \text{drive\_id, minimum\_cgpa, maximum\_backlogs}$<br>$\text{drive\_id} \rightarrow \text{eligibility\_id, minimum\_cgpa, maximum\_backlogs}$ (via `UNIQUE`) | **BCNF** |
+| **student** | `student_id` | `student_id → (name, gender, age, degree, branch, cgpa, backlogs, ...)` | **BCNF** |
+| **company** | `company_id` | `company_id → (company_name, company_type, industry, location, website, email, phone)` | **BCNF** |
+| **placement_officer** | `officer_id` | `officer_id → (officer_name, email, phone, password)` | **BCNF** |
+| **placement_drive** | `drive_id` | `drive_id → (company_id, job_role, package_lpa, vacancies, drive_date, last_date_to_apply)` | **BCNF** |
+| **eligibility** | `eligibility_id`, `drive_id` | `eligibility_id → (drive_id, minimum_cgpa, maximum_backlogs)`<br>`drive_id → (eligibility_id, minimum_cgpa, maximum_backlogs)` (via `UNIQUE`) | **BCNF** |
 | **eligibility_allowed_branch** | `(eligibility_id, allowed_branch)` | Composite key determines all attributes (all attributes are prime) | **BCNF** |
-| **hr** | `hr_id` | $\text{hr\_id} \rightarrow \text{company\_id, hr\_name, email, phone}$ | **BCNF** |
+| **hr** | `hr_id` | `hr_id → (company_id, hr_name, email, phone)` | **BCNF** |
 | **applies** | `(student_id, drive_id)` | Composite key determines association | **BCNF** |
-| **application** | `application_id` | $\text{application\_id} \rightarrow \text{student\_id, drive\_id, officer\_id, application\_date, application\_status}$ | **BCNF** |
-| **interview** | `interview_id` | $\text{interview\_id} \rightarrow \text{application\_id, interview\_round, interview\_date, result, remarks}$ | **BCNF** |
-| **offer** | `offer_id` | $\text{offer\_id} \rightarrow \text{student\_id, company\_id, offer_date, package_lpa, offer_status}$ | **BCNF** |
+| **application** | `application_id` | `application_id → (student_id, drive_id, officer_id, application_date, application_status)` | **BCNF** |
+| **interview** | `interview_id` | `interview_id → (application_id, interview_round, interview_date, result, remarks)` | **BCNF** |
+| **offer** | `offer_id` | `offer_id → (student_id, company_id, offer_date, package_lpa, offer_status)` | **BCNF** |
 
 ---
 
@@ -779,7 +775,7 @@ SELECT 'offer', COUNT(*) FROM offer;
 <p align="center">
   <strong>1. Smart Placement Portal Authentication</strong><br>
   <em>Clean, responsive login interface supporting role-based entry for Students and University Officers.</em><br><br>
-  <img src="assets/login-ui.png" alt="PlaceX Login Interface" width="90%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);" />
+  <img src="assets/login-ui.png" alt="PlaceX Login Interface" width="90%" />
 </p>
 
 <br>
@@ -787,7 +783,7 @@ SELECT 'offer', COUNT(*) FROM offer;
 <p align="center">
   <strong>2. Student Portal Dashboard</strong><br>
   <em>Personalized candidate command center featuring drive listings, application progress, and interview notifications.</em><br><br>
-  <img src="assets/student-dashboard.png" alt="Student Portal Dashboard" width="90%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);" />
+  <img src="assets/student-dashboard.png" alt="Student Portal Dashboard" width="90%" />
 </p>
 
 <br>
@@ -795,7 +791,7 @@ SELECT 'offer', COUNT(*) FROM offer;
 <p align="center">
   <strong>3. Placement Officer Live Analytics Dashboard</strong><br>
   <em>Administrator dashboard displaying institutional KPIs, placement ratios, package distributions, and management tables.</em><br><br>
-  <img src="assets/admin-dashboard.png" alt="Admin Management Dashboard" width="90%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);" />
+  <img src="assets/admin-dashboard.png" alt="Admin Management Dashboard" width="90%" />
 </p>
 
 ---
@@ -806,7 +802,7 @@ SELECT 'offer', COUNT(*) FROM offer;
 Collage-Placement-Portal/
 ├── assets/                                 # Visual artifacts and documentation assets
 │   ├── admin-dashboard.png                 # Admin dashboard KPI screenshot
-│   ├── er-diagram-handdrawn.png            # Original hand-drawn ER diagram from PPT
+│   ├── er-diagram-handdrawn.png            # Properly oriented conceptual ER diagram
 │   ├── login-ui.png                        # Portal sign-in interface screenshot
 │   ├── student-dashboard.png               # Student command center screenshot
 │   └── uml-diagram.png                     # Formal UML class diagram from PPT
