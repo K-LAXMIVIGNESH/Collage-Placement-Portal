@@ -32,7 +32,7 @@
 10. [Demonstration Guide & Reproducing Database State](#10-demonstration-guide--reproducing-database-state)
 11. [User Interface & Walkthrough](#11-user-interface--walkthrough)
 12. [Repository Directory Structure](#12-repository-directory-structure)
-13. [Future Enhancements & Conclusion](#13-future-enhancements--conclusion)
+13. [Project Status, Completed Deliverables & Future Scope](#13-project-status-completed-deliverables--future-scope)
 
 ---
 
@@ -70,6 +70,7 @@ PlaceX resolves these challenges through a unified, 3-tier database architecture
 * **Centralized Data Repository:** Consolidates students (seeded with 12,000+ realistic records), enterprise recruiters, placement officers, drives, applications, interviews, and offers into one PostgreSQL database.
 * **Automated Eligibility Engine:** Dynamically validates candidate eligibility by comparing student CGPA, active backlog counts, and academic branch with company criteria stored in dedicated tables.
 * **Full Lifecycle Tracking:** Provides transparent end-to-end monitoring from initial drive publication and student application to multi-stage interview scheduling and offer acceptance.
+* **Dynamic Search & Multi-Attribute Filtering Engine (Fully Completed):** Real-time interactive keyword searching (across students, companies, drives, applications, and skills) and multidimensional dropdown filtering (by package LPA, application status, interview round, and branch) across both Student and Administrator dashboards.
 * **Role-Based Access Control:** Tailored experiences for students (profile inspection, application status, eligible drives) and placement administrators (analytics dashboard, drive coordination, company directory, student management).
 
 ---
@@ -629,6 +630,85 @@ ORDER BY avg_branch_package DESC NULLS LAST;
 
 ---
 
+### 8.6 Placement Drive Compensation Evaluation (SUM, MAX, MIN)
+* **Purpose:** Evaluates overall compensation outlay and package extremes (highest and lowest CTC) offered across all placement drives.
+
+```sql
+-- Total package offered across drives
+SELECT SUM(package_lpa) AS total_package_lpa
+FROM placement_drive;
+
+-- Highest and lowest package boundaries
+SELECT 
+    MAX(package_lpa) AS highest_package,
+    MIN(package_lpa) AS lowest_package
+FROM placement_drive;
+```
+
+---
+
+### 8.7 Company-Wise Average Package Offered (JOIN, GROUP BY)
+* **Purpose:** Computes the average package offered by each recruiter across their recruitment drives.
+
+```sql
+SELECT 
+    c.company_name,
+    ROUND(AVG(pd.package_lpa), 2) AS average_package
+FROM company c
+JOIN placement_drive pd 
+    ON c.company_id = pd.company_id
+GROUP BY c.company_id, c.company_name
+ORDER BY average_package DESC;
+```
+
+---
+
+### 8.8 Application Status Distribution Breakdown (COUNT with GROUP BY)
+* **Purpose:** Tallies candidate volume distributed across recruitment progression stages (Applied, Eligible, Shortlisted, Interview Scheduled).
+
+```sql
+SELECT 
+    application_status,
+    COUNT(*) AS total_applications
+FROM application
+GROUP BY application_status
+ORDER BY total_applications DESC;
+```
+
+---
+
+### 8.9 Multi-Drive Recruiter Identification (GROUP BY & HAVING > 1)
+* **Purpose:** Identifies enterprise partners conducting more than one recruitment drive on campus.
+
+```sql
+SELECT 
+    c.company_name,
+    COUNT(pd.drive_id) AS total_drives
+FROM company c
+JOIN placement_drive pd 
+    ON c.company_id = pd.company_id
+GROUP BY c.company_id, c.company_name
+HAVING COUNT(pd.drive_id) > 1;
+```
+
+---
+
+### 8.10 Cascade Deletion Constraint on Multivalued Branches
+* **Purpose:** Guarantees strict referential integrity so that deleting or archiving an eligibility criteria profile automatically cascades to all associated allowed branches without leaving orphaned tuples.
+
+```sql
+ALTER TABLE eligibility_allowed_branch
+DROP CONSTRAINT eligibility_allowed_branch_eligibility_id_fkey;
+
+ALTER TABLE eligibility_allowed_branch
+ADD CONSTRAINT eligibility_allowed_branch_eligibility_id_fkey
+FOREIGN KEY (eligibility_id)
+REFERENCES eligibility(eligibility_id)
+ON DELETE CASCADE;
+```
+
+---
+
 ## 9. Installation, Setup & Execution Instructions
 
 Follow these step-by-step instructions to clone, configure, and launch the portal locally.
@@ -903,12 +983,15 @@ Collage-Placement-Portal/
 │   ├── package-lock.json                   # Deterministic dependency lockfile
 │   └── server.js                           # Express REST API & PostgreSQL pool connection
 │
+├── core dbms assets/                       # Core DBMS SQL assets & analytical scripts
+│   └── final_code_sql.sql                  # Complete SQL schema, cascade triggers & query suite
+│
 ├── database/                               # Database Tier
 │   └── schema.sql                          # Complete DDL, constraints & seed scripts
 │
 ├── frontend/                               # Presentation Tier
 │   ├── index.html                          # Single-page application markup
-│   ├── script.js                           # Client-side routing, API fetch & DOM binding
+│   ├── script.js                           # Client-side routing, search & filter engine, DOM binding
 │   └── style.css                           # Modern glassmorphism UI styles
 │
 ├── .gitignore                              # Git exclusion rules (node_modules, .env)
@@ -918,16 +1001,21 @@ Collage-Placement-Portal/
 
 ---
 
-## 13. Future Enhancements & Conclusion
+## 13. Project Status, Completed Deliverables & Future Scope
 
-### 13.1 Future Enhancements
-* **Automated Eligibility Filter on Application Submission:** Implement backend database triggers to restrict students from applying to drives for which their CGPA, backlogs, or branch do not qualify.
-* **Full Administrative CRUD Modals:** Enable placement officers to add, update, and archive recruitment drives, job roles, and candidate statuses directly from the UI.
-* **Resume Parsing & Skill-Matching Engine:** Incorporate automated CV ingestion to cross-match candidate technical proficiencies with recruiter requirements.
-* **Automated Notification Engine:** Real-time email and SMS alerts for shortlisting results, interview round schedules, and offer letter generation.
-* **Role-Based JWT Authentication:** Transition from identifier-based lookup to encrypted JSON Web Token (JWT) sessions and bcrypt password hashing.
+### 13.1 Key Completed Features
+* **Full-Stack Search & Filtering Engine (Completed):** Fully implemented dynamic multi-attribute keyword search and dropdown filtering across both Student and Administrator interfaces (filtering placement drives by package LPA, applications by recruitment status, interviews by round, and real-time student/company search).
+* **Normalized BCNF Relational Database:** 11 tables engineered to Boyce-Codd Normal Form with primary/foreign keys, check constraints, unique constraints, and cascade deletion rules.
+* **Role-Based Portals:** Tailored interfaces for Students (profile, eligible drives, application submission, interview tracking, offers) and Administrators (live KPI dashboard, student directory, company profiles, and drive tracking).
+* **Advanced Query Suite & Analytics:** Comprehensive SQL operations covering multi-table joins, conditional aggregations, compensation analysis (`SUM`, `AVG`, `MAX`, `MIN`), and grouped analytics.
 
-### 13.2 Conclusion
+### 13.2 Future Enhancements
+* **Database Trigger-Based Hard Restraints:** Implement PostgreSQL trigger functions to automatically block application submissions when student CGPA or branch does not qualify for a drive.
+* **Resume Parsing & Skill-Matching Engine:** Automated CV ingestion to match candidate skills with recruiter requirements.
+* **Automated Notification Dispatcher:** Real-time email and SMS alerts for interview shortlisting and offer release.
+* **Role-Based JWT Authentication:** Transition from identifier-based lookup to encrypted JSON Web Tokens (JWT) and bcrypt password hashing.
+
+### 13.3 Conclusion
 The **PlaceX College Placement Management Portal** provides a dependable, scalable solution to the challenges of manual campus placement administration. Grounded in formal relational database principles—with strict primary/foreign key constraints, domain assertions, and full BCNF normalization—PlaceX eliminates data redundancy, preserves referential integrity, and provides real-time placement visibility. Integrated with an Express.js REST API and a modern web dashboard, PlaceX serves as an exemplary full-stack DBMS engineering project.
 
 ---

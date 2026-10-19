@@ -516,6 +516,50 @@ join company
 on offer.company_id = company.company_id;
 
 
--- =========================================================
--- END OF DATABASE CREATION
--- =========================================================
+-- add on delete cascade to eligibility_allowed_branch
+
+alter table eligibility_allowed_branch
+drop constraint eligibility_allowed_branch_eligibility_id_fkey;
+
+alter table eligibility_allowed_branch
+add constraint eligibility_allowed_branch_eligibility_id_fkey
+foreign key (eligibility_id)
+references eligibility(eligibility_id)
+on delete cascade;
+
+
+select sum(package_lpa) as total_package_lpa
+from placement_drive;
+
+
+select
+    c.company_name,
+    avg(pd.package_lpa) as average_package
+from company c
+join placement_drive pd
+    on c.company_id = pd.company_id
+group by c.company_id, c.company_name;
+
+
+select
+    application_status,
+    count(*) as total_applications
+from application
+group by application_status;
+
+
+select
+    max(package_lpa) as highest_package,
+    min(package_lpa) as lowest_package
+from placement_drive;
+
+
+
+select
+    c.company_name,
+    count(pd.drive_id) as total_drives
+from company c
+join placement_drive pd
+    on c.company_id = pd.company_id
+group by c.company_id, c.company_name
+having count(pd.drive_id) > 1;
