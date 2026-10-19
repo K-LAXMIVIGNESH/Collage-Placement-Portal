@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PlaceX | College Placement Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="login-page" class="login-page">
+
+    <div class="login-background">
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="glow glow-three"></div>
+
+    </div>
+
+
+    <div class="login-container">
+
+
+        <!-- left branding -->
+
+        <div class="login-brand">
+
+            <div class="brand-logo">
+
+                <div class="brand-icon">
+                    P
+                </div>
+
+                <span>PlaceX</span>
+
+            </div>
+
+
+            <div class="brand-content">
+
+                <span class="eyebrow">
+                    SMART PLACEMENT MANAGEMENT
+                </span>
+
+                <h1>
+                    Your career.
+                    <br>
+                    <span>Our platform.</span>
+                </h1>
+
+                <p>
+                    A centralized placement management platform
+                    connecting students, companies and placement
+                    officers in one intelligent ecosystem.
+                </p>
+
+            </div>
+
+
+            <div class="brand-features">
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Smart Eligibility</strong>
+                        <small>
+                            Automatically check placement eligibility
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Placement Tracking</strong>
+                        <small>
+                            Track applications, interviews and offers
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Real-time Analytics</strong>
+                        <small>
+                            Monitor placement performance
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="brand-footer">
+                College Placement Management System
+            </div>
+
+        </div>
+
+
+        <!-- login panel -->
+
+        <div class="login-panel">
+
+            <div class="login-header">
+
+                <span class="welcome-label">
+                    WELCOME BACK
+                </span>
+
+                <h2>
+                    Sign in to PlaceX
+                </h2>
+
+                <p>
+                    Select your account type to continue
+                </p>
+
+            </div>
+
+
+            <!-- role selector -->
+
+            <div class="role-selector">
+
+                <button
+                    class="role-button active"
+                    onclick="select_role('student')">
+
+                    <span class="role-icon">
+                        🎓
+                    </span>
+
+                    <span>
+                        <strong>Student</strong>
+                        <small>Student portal</small>
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="role-button"
+                    onclick="select_role('admin')">
+
+                    <span class="role-icon">
+                        🛡
+                    </span>
+
+                    <span>
+                        <strong>Admin</strong>
+                        <small>Placement officer</small>
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- student login -->
+
+            <div id="student-login" class="login-form">
+
+                <label>
+                    Student ID
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        ID
+                    </span>
+
+                    <input
+                        type="number"
+                        id="student-id"
+                        name="student_identifier"
+                        autocomplete="off"
+                        placeholder="Enter your student ID">
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="student_login()">
+
+                    <span>
+                        Continue as Student
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <div class="login-info">
+
+                    <span class="info-icon">
+                        i
+                    </span>
+
+                    <span>
+                        Use your college student ID to access
+                        your placement dashboard.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- admin login -->
+
+            <div
+                id="admin-login"
+                class="login-form hidden">
+
+                <label>
+                    Email address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        @
+                    </span>
+
+                    <input
+                        type="email"
+                        id="admin-email"
+                        name="admin_identifier"
+                        autocomplete="off"
+                        placeholder="Enter admin email">
+
+                </div>
+
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        •
+                    </span>
+
+                    <div id="admin-password-container">
+                        <!-- password field is created only when admin login is selected -->
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="admin_login()">
+
+                    <span>
+                        Sign in as Admin
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <div class="login-info">
+
+                    <span class="info-icon">
+                        i
+                    </span>
+
+                    <span>
+                        Authorized placement officers only.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p id="login-message"></p>
+
+
+            <div class="login-security">
+
+                <span>🔒</span>
+
+                Secure placement management
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     STUDENT DASHBOARD
+===================================================== -->
+
+<div
+    id="student-dashboard"
+    class="dashboard hidden">
+
+
+    <!-- sidebar -->
+
+    <aside class="sidebar student-sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="sidebar-logo">
+                P
+            </div>
+
+            <div>
+                <strong>PlaceX</strong>
+                <small>Student Portal</small>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section-title">
+            MAIN MENU
+        </div>
+
+
+        <button
+            class="nav-button active"
+            onclick="show_student_section('student-home')">
+
+            <span>⌂</span>
+            Dashboard
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_student_section('student-profile')">
+
+            <span>◉</span>
+            My Profile
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_student_section('student-drives')">
+
+            <span>▣</span>
+            Placement Drives
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_student_section('student-applications')">
+
+            <span>✓</span>
+            My Applications
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_student_section('student-interviews')">
+
+            <span>◷</span>
+            Interviews
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_student_section('student-offers')">
+
+            <span>★</span>
+            Offers
+
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar">
+                    S
+                </div>
+
+                <div>
+                    <strong>Student</strong>
+                    <small>Placement Portal</small>
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()">
+
+                <span>↪</span>
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- main -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    STUDENT PORTAL
+                </span>
+
+                <h2 id="student-page-title">
+                    Dashboard
+                </h2>
+
+                <p id="student-welcome">
+                    Welcome back
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="topbar-avatar">
+                    S
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- student home -->
+
+        <section
+            id="student-home"
+            class="content-section">
+
+
+            <div class="hero-banner">
+
+                <div>
+
+                    <span>
+                        YOUR PLACEMENT JOURNEY
+                    </span>
+
+                    <h1>
+                        Find your next opportunity.
+                    </h1>
+
+                    <p>
+                        Explore the latest placement drives
+                        and build your career.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-decoration">
+                    ✦
+                </div>
+
+            </div>
+
+
+
+            <div class="section-heading">
+
+                <div>
+                    <span>OVERVIEW</span>
+                    <h3>Placement Summary</h3>
+                </div>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Placement Drives
+                        </span>
+
+                        <strong id="student-drive-count">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Applications
+                        </span>
+
+                        <strong id="student-application-count">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◷
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Interviews
+                        </span>
+
+                        <strong id="student-interview-count">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Offers
+                        </span>
+
+                        <strong id="student-offer-count">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span>OPPORTUNITIES</span>
+                        <h3>Latest Placement Drives</h3>
+                    </div>
+
+                    <button
+                        class="secondary-button"
+                        onclick="show_student_section('student-drives')">
+
+                        View all →
+
+                    </button>
+
+                </div>
+
+
+                <div id="student-drive-list"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- profile -->
+
+        <section
+            id="student-profile"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>ACCOUNT</span>
+
+                <h3>My Profile</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="student-profile-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- drives -->
+
+        <section
+            id="student-drives"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>OPPORTUNITIES</span>
+
+                <h3>Placement Drives</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="student-application-tools">
+                    <div class="student-application-search">
+                        <label for="student-drives-search">Search placement drives</label>
+                        <input id="student-drives-search" class="management-search" type="search" placeholder="Search company, role, package, date...">
+                        <button id="student-drives-search-button" class="student-application-search-button" type="button">Search</button>
+                    </div>
+                    <div class="student-application-filter">
+                        <label for="student-drives-package-filter">Filter by package (LPA)</label>
+                        <select id="student-drives-package-filter" class="management-filter"><option value="">All packages</option></select>
+                    </div>
+                    <button id="student-drives-clear-button" class="student-application-clear-button" type="button">Clear</button>
+                </div>
+                <div id="student-drives-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- applications -->
+
+        <section
+            id="student-applications"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>APPLICATION TRACKER</span>
+
+                <h3>My Applications</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="student-application-tools">
+                    <div class="student-application-search">
+                        <label for="student-applications-search">Search applications</label>
+                        <input id="student-applications-search" class="management-search" type="search" placeholder="Search company, job role, status, ID or date...">
+                        <button id="student-applications-search-button" class="student-application-search-button" type="button">Search</button>
+                    </div>
+                    <div class="student-application-filter">
+                        <label for="student-applications-status-filter">Filter by status</label>
+                        <select id="student-applications-status-filter" class="management-filter">
+                            <option value="">All statuses</option>
+                        </select>
+                    </div>
+                    <button id="student-applications-clear-button" class="student-application-clear-button" type="button">Clear</button>
+                </div>
+
+                <div id="student-applications-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- interviews -->
+
+        <section
+            id="student-interviews"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>INTERVIEW TRACKER</span>
+
+                <h3>My Interviews</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="student-application-tools">
+                    <div class="student-application-search">
+                        <label for="student-interviews-search">Search interviews</label>
+                        <input id="student-interviews-search" class="management-search" type="search" placeholder="Search company, role, round, date, result...">
+                        <button id="student-interviews-search-button" class="student-application-search-button" type="button">Search</button>
+                    </div>
+                    <div class="student-application-filter">
+                        <label for="student-interviews-result-filter">Filter by result</label>
+                        <select id="student-interviews-result-filter" class="management-filter"><option value="">All results</option></select>
+                    </div>
+                    <button id="student-interviews-clear-button" class="student-application-clear-button" type="button">Clear</button>
+                </div>
+                <div id="student-interviews-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- offers -->
+
+        <section
+            id="student-offers"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>CAREER</span>
+
+                <h3>My Offers</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="student-application-tools">
+                    <div class="student-application-search">
+                        <label for="student-offers-search">Search offers</label>
+                        <input id="student-offers-search" class="management-search" type="search" placeholder="Search company, offer ID, date, package, status...">
+                        <button id="student-offers-search-button" class="student-application-search-button" type="button">Search</button>
+                    </div>
+                    <div class="student-application-filter">
+                        <label for="student-offers-status-filter">Filter by status</label>
+                        <select id="student-offers-status-filter" class="management-filter"><option value="">All statuses</option></select>
+                    </div>
+                    <button id="student-offers-clear-button" class="student-application-clear-button" type="button">Clear</button>
+                </div>
+                <div id="student-offers-data"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
+
+<div
+    id="admin-dashboard"
+    class="dashboard hidden">
+
+
+    <aside class="sidebar admin-sidebar">
+
+
+        <div class="sidebar-brand">
+
+            <div class="sidebar-logo">
+                P
+            </div>
+
+            <div>
+                <strong>PlaceX</strong>
+                <small>Admin Portal</small>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section-title">
+            MANAGEMENT
+        </div>
+
+
+        <button
+            class="nav-button active"
+            onclick="show_admin_section('admin-home')">
+
+            <span>⌂</span>
+            Dashboard
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-students')">
+
+            <span>♙</span>
+            Students
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-companies')">
+
+            <span>▣</span>
+            Companies
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-drives')">
+
+            <span>◈</span>
+            Placement Drives
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-applications')">
+
+            <span>✓</span>
+            Applications
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-interviews')">
+
+            <span>◷</span>
+            Interviews
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-offers')">
+
+            <span>★</span>
+            Offers
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="show_admin_section('admin-hr')">
+
+            <span>♙</span>
+            HR Management
+
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar admin">
+                    A
+                </div>
+
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Placement Officer</small>
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()">
+
+                <span>↪</span>
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    ADMINISTRATION
+                </span>
+
+                <h2 id="admin-page-title">
+                    Dashboard
+                </h2>
+
+                <p id="admin-welcome">
+                    Placement management overview
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="notification">
+                    🔔
+                </div>
+
+                <div class="topbar-avatar admin">
+                    A
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- admin home -->
+
+        <section
+            id="admin-home"
+            class="content-section">
+
+
+            <div class="hero-banner admin-hero">
+
+                <div>
+
+                    <span>
+                        PLACEMENT MANAGEMENT
+                    </span>
+
+                    <h1>
+                        Good morning, Administrator.
+                    </h1>
+
+                    <p>
+                        Here's what's happening across
+                        your placement ecosystem.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-decoration">
+                    ✦
+                </div>
+
+            </div>
+
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span>LIVE OVERVIEW</span>
+
+                    <h3>
+                        Placement Analytics
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ♙
+                    </div>
+
+                    <div>
+
+                        <span>Total Students</span>
+
+                        <strong id="total-students">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>Placed Students</span>
+
+                        <strong id="placed-students">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <span>Companies</span>
+
+                        <strong id="total-companies">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◈
+                    </div>
+
+                    <div>
+
+                        <span>Placement Drives</span>
+
+                        <strong id="total-drives">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>Applications</span>
+
+                        <strong id="total-applications">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <span>Offers</span>
+
+                        <strong id="total-offers">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ₹
+                    </div>
+
+                    <div>
+
+                        <span>Highest Package</span>
+
+                        <strong id="highest-package">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        %
+                    </div>
+
+                    <div>
+
+                        <span>Placement Rate</span>
+
+                        <strong id="placement-percentage">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span>PERFORMANCE</span>
+
+                        <h3>
+                            Placement Summary
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="admin-summary"
+                    class="summary-grid">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin students -->
+
+        <section
+            id="admin-students"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>MANAGEMENT</span>
+
+                <h3>Students</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-students-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin companies -->
+
+        <section
+            id="admin-companies"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>RECRUITERS</span>
+
+                <h3>Companies</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-companies-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin drives -->
+
+        <section
+            id="admin-drives"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>OPPORTUNITIES</span>
+
+                <h3>Placement Drives</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-drives-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin applications -->
+
+        <section
+            id="admin-applications"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>APPLICATIONS</span>
+
+                <h3>Student Applications</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-applications-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin interviews -->
+
+        <section
+            id="admin-interviews"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>INTERVIEWS</span>
+
+                <h3>Interview Management</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-interviews-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin offers -->
+
+        <section
+            id="admin-offers"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>OFFERS</span>
+
+                <h3>Offer Management</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-offers-data"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- admin hr -->
+
+        <section
+            id="admin-hr"
+            class="content-section hidden">
+
+            <div class="section-heading">
+
+                <span>RECRUITMENT TEAM</span>
+
+                <h3>HR Management</h3>
+
+            </div>
+
+            <div class="panel">
+
+                <div id="admin-hr-data"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
