@@ -456,8 +456,8 @@ where `allowed_branch` contained non-atomic comma-separated strings (e.g., `'CSE
 ### 6.2 Normal Form Step-by-Step Justification
 * **First Normal Form (1NF):** Every column contains atomic values, each row is unique, and domain constraints are enforced across all 11 tables.
 * **Second Normal Form (2NF):** The schema is in 1NF and contains no **partial functional dependencies**—in composite key tables (`applies` and `eligibility_allowed_branch`), all non-key attributes are fully dependent on the entire composite primary key.
-* **Third Normal Form (3NF):** The schema is in 2NF and exhibits no **transitive dependencies** ($X \rightarrow Y$ and $Y \rightarrow Z$ where $Z$ is a non-prime attribute). All non-prime attributes depend solely and directly on candidate keys.
-* **Boyce-Codd Normal Form (BCNF):** A relation $R$ is in BCNF if and only if for every non-trivial functional dependency $X \rightarrow Y$, the determinant $X$ is a **superkey**.
+* **Third Normal Form (3NF):** The schema is in 2NF and exhibits no **transitive dependencies** (`X → Y` and `Y → Z` where `Z` is a non-prime attribute). All non-prime attributes depend solely and directly on candidate keys.
+* **Boyce-Codd Normal Form (BCNF):** A relation `R` is in BCNF if and only if for every non-trivial functional dependency `X → Y`, the determinant `X` is a **superkey**.
 
 ### 6.3 Functional Dependency & Candidate Key Analysis
 | Relation | Candidate Key(s) | Verified Functional Dependencies (FDs) | Normal Form |
