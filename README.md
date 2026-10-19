@@ -28,6 +28,7 @@
 7. [Methodology & Database Design](#7-methodology--database-design)
 8. [Advanced SQL Queries & Analytical Operations](#8-advanced-sql-queries--analytical-operations)
 9. [Installation, Setup & Execution Instructions](#9-installation-setup--execution-instructions)
+   * [9.7 Quickstart Setup Checklist & Execution Commands](#97-quickstart-setup-checklist--execution-commands)
 10. [Demonstration Guide & Reproducing Database State](#10-demonstration-guide--reproducing-database-state)
 11. [User Interface & Walkthrough](#11-user-interface--walkthrough)
 12. [Repository Directory Structure](#12-repository-directory-structure)
@@ -709,6 +710,93 @@ server is running on port 3000
 
 ### 9.6 Access the Web Application
 Open your web browser and navigate to:
+```
+http://localhost:3000
+```
+
+---
+
+### 9.7 Quickstart Setup Checklist & Execution Commands
+
+A dedicated quick-reference setup checklist and copy-paste command sequence to get the PlaceX portal running from scratch.
+
+#### Pre-Flight Checklist
+- [ ] **PostgreSQL 14+** installed and service running on default port `5432`.
+- [ ] **Node.js 18+** & **npm** installed (`node -v` and `npm -v` return valid versions).
+- [ ] Port `3000` is free for the Express web server.
+
+#### Step-by-Step Setup Checklist
+- [ ] **Step 1: Clone Repository & Open Folder:** Clone from GitHub and navigate to the project root.
+- [ ] **Step 2: Initialize Database:** Run `CREATE DATABASE placex;` in PostgreSQL.
+- [ ] **Step 3: Import Schema & Seed Data:** Execute `database/schema.sql` into the `placex` database.
+- [ ] **Step 4: Configure Environment:** Copy `backend/.env.example` to `backend/demo.env` and set your local PostgreSQL credentials.
+- [ ] **Step 5: Install Node Dependencies:** Run `npm install` inside the `backend` folder.
+- [ ] **Step 6: Launch Backend Server:** Run `npm start` (or `node server.js`).
+- [ ] **Step 7: Browse Application:** Open `http://localhost:3000` in any web browser.
+
+---
+
+#### Copy-Paste Execution Commands
+
+##### On Windows (PowerShell)
+```powershell
+# 1. Clone repository & change directory
+git clone https://github.com/K-LAXMIVIGNESH/Collage-Placement-Portal.git
+cd Collage-Placement-Portal
+
+# 2. Create PostgreSQL database and import tables/data
+psql -U postgres -c "CREATE DATABASE placex;"
+psql -U postgres -d placex -f database/schema.sql
+
+# 3. Enter backend directory & setup environment file
+cd backend
+Copy-Item .env.example demo.env
+# NOTE: If your PostgreSQL password is not default, edit demo.env:
+# (Set: db_password=your_postgres_password)
+
+# 4. Install backend dependencies
+npm install
+
+# 5. Launch the PlaceX web server
+npm start
+```
+
+##### On Linux / macOS (Bash)
+```bash
+# 1. Clone repository & change directory
+git clone https://github.com/K-LAXMIVIGNESH/Collage-Placement-Portal.git
+cd Collage-Placement-Portal
+
+# 2. Create PostgreSQL database and import tables/data
+psql -U postgres -c "CREATE DATABASE placex;"
+psql -U postgres -d placex -f database/schema.sql
+
+# 3. Enter backend directory & setup environment file
+cd backend
+cp .env.example demo.env
+# NOTE: If your PostgreSQL password is not default, edit demo.env:
+# (Set: db_password=your_postgres_password)
+
+# 4. Install backend dependencies
+npm install
+
+# 5. Launch the PlaceX web server
+npm start
+```
+
+---
+
+#### Immediate Health & Status Check
+Once started, verify that both the server and PostgreSQL database pool are active:
+```bash
+curl http://localhost:3000/api/health
+```
+**Expected Response:**
+```json
+{"status":"ok","database":"connected","server":"running"}
+```
+
+Access the UI at:
 ```
 http://localhost:3000
 ```
