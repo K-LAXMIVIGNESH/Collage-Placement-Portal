@@ -14,7 +14,11 @@
   <img src="https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JavaScript-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Frontend" />
   <img src="https://img.shields.io/badge/Architecture-3--Tier%20Client--Server-blue?style=for-the-badge" alt="Architecture" />
   <img src="https://img.shields.io/badge/Normalization-BCNF%20Compliant-success?style=for-the-badge" alt="BCNF" />
+  <a href="PlaceX_DBMS_Project_Report.pdf"><img src="https://img.shields.io/badge/Project%20Report-PDF%20Format-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Project Report PDF" /></a>
 </p>
+
+> [!TIP]
+> **Official Project Report (PDF):** The complete academic project report structured across all 10 required sections is compiled and available directly in the repository: 📄 **[Download / View PlaceX_DBMS_Project_Report.pdf](PlaceX_DBMS_Project_Report.pdf)**.
 
 ---
 
