@@ -14,15 +14,7 @@
   <img src="https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JavaScript-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Frontend" />
   <img src="https://img.shields.io/badge/Architecture-3--Tier%20Client--Server-blue?style=for-the-badge" alt="Architecture" />
   <img src="https://img.shields.io/badge/Normalization-BCNF%20Compliant-success?style=for-the-badge" alt="BCNF" />
-  <a href="PlaceX_DBMS_Project_Report.pdf"><img src="https://img.shields.io/badge/Project%20Report-PDF%20Format-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Project Report PDF" /></a>
-  <a href="latex_report/main.tex"><img src="https://img.shields.io/badge/Overleaf%20Report-LaTeX%20Source-green?style=for-the-badge&logo=overleaf&logoColor=white" alt="Overleaf LaTeX" /></a>
 </p>
-
-> [!TIP]
-> **Official Project Report & LaTeX Source:**
-> - 📄 **Compiled Academic PDF:** [PlaceX_DBMS_Project_Report.pdf](PlaceX_DBMS_Project_Report.pdf)
-> - 🖋️ **Overleaf LaTeX Source:** [latex_report/main.tex](latex_report/main.tex)
-> - 📦 **One-Click Overleaf Upload ZIP:** [PlaceX_Overleaf_LaTeX_Report.zip](PlaceX_Overleaf_LaTeX_Report.zip)
 
 ---
 
@@ -423,19 +415,19 @@ classDiagram
 ## 5. Relational Schema Mapping & Integrity Constraints &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 5.1 Relational Schema Definitions
-The conceptual model maps directly to 11 relational schemas:
+The conceptual model maps directly to 11 relational schemas. Primary keys are <u>underlined</u>:
 
-1. **Student** (`student_id` [PK], `name`, `gender`, `age`, `degree`, `branch`, `cgpa`, `backlogs`, `internships`, `certifications`, `coding_skills`, `communication_skills`, `aptitude_score`, `projects`, `placement_status`, `company_type`, `package_lpa`, `email`, `phone`, `password`, `city`, `state`)
-2. **Company** (`company_id` [PK], `company_name`, `company_type`, `industry`, `location`, `website`, `email`, `phone`)
-3. **Placement_Officer** (`officer_id` [PK], `officer_name`, `email`, `phone`, `password`)
-4. **Placement_Drive** (`drive_id` [PK], `company_id` [FK → Company.company_id], `job_role`, `package_lpa`, `vacancies`, `drive_date`, `last_date_to_apply`)
-5. **Eligibility** (`eligibility_id` [PK], `drive_id` [FK → Placement_Drive.drive_id, UNIQUE], `minimum_cgpa`, `maximum_backlogs`)
-6. **Eligibility_Allowed_Branch** (`eligibility_id` [FK → Eligibility.eligibility_id], `allowed_branch`) — *(Composite PK: `(eligibility_id, allowed_branch)`)*
-7. **HR** (`hr_id` [PK], `company_id` [FK → Company.company_id], `hr_name`, `email`, `phone`)
-8. **Applies** (`student_id` [FK → Student.student_id], `drive_id` [FK → Placement_Drive.drive_id]) — *(Composite PK: `(student_id, drive_id)`)*
-9. **Application** (`application_id` [PK], `student_id` [FK → Student.student_id], `drive_id` [FK → Placement_Drive.drive_id], `officer_id` [FK → Placement_Officer.officer_id], `application_date`, `application_status`)
-10. **Interview** (`interview_id` [PK], `application_id` [FK → Application.application_id], `interview_round`, `interview_date`, `result`, `remarks`)
-11. **Offer** (`offer_id` [PK], `student_id` [FK → Student.student_id], `company_id` [FK → Company.company_id], `offer_date`, `package_lpa`, `offer_status`)
+1. **Student** ( <u>`student_id`</u>, `name`, `gender`, `age`, `degree`, `branch`, `cgpa`, `backlogs`, `internships`, `certifications`, `coding_skills`, `communication_skills`, `aptitude_score`, `projects`, `placement_status`, `company_type`, `package_lpa`, `email`, `phone`, `password`, `city`, `state` )
+2. **Company** ( <u>`company_id`</u>, `company_name`, `company_type`, `industry`, `location`, `website`, `email`, `phone` )
+3. **Placement_Officer** ( <u>`officer_id`</u>, `officer_name`, `email`, `phone`, `password` )
+4. **Placement_Drive** ( <u>`drive_id`</u>, `company_id`, `job_role`, `package_lpa`, `vacancies`, `drive_date`, `last_date_to_apply` )
+5. **Eligibility** ( <u>`eligibility_id`</u>, `drive_id`, `minimum_cgpa`, `maximum_backlogs` )
+6. **Eligibility_Allowed_Branch** ( <u>`eligibility_id`</u>, <u>`allowed_branch`</u> )
+7. **HR** ( <u>`hr_id`</u>, `company_id`, `hr_name`, `email`, `phone` )
+8. **Applies** ( <u>`student_id`</u>, <u>`drive_id`</u> )
+9. **Application** ( <u>`application_id`</u>, `student_id`, `drive_id`, `officer_id`, `application_date`, `application_status` )
+10. **Interview** ( <u>`interview_id`</u>, `application_id`, `interview_round`, `interview_date`, `result`, `remarks` )
+11. **Offer** ( <u>`offer_id`</u>, `student_id`, `company_id`, `offer_date`, `package_lpa`, `offer_status` )
 
 ---
 
