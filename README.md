@@ -18,6 +18,7 @@
 
 ---
 
+<a id="table-of-contents"></a>
 ## Table of Contents
 1. [Project Title & Team Details](#1-project-title--team-details)
 2. [Project Overview, Introduction & Problem Statement](#2-project-overview-introduction--problem-statement)
@@ -36,7 +37,8 @@
 
 ---
 
-## 1. Project Title & Team Details
+<a id="1-project-title--team-details"></a>
+## 1. Project Title & Team Details &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 * **Project Title:** PlaceX: College Placement Management Portal (Smart Placement Management System)
 * **Academic Course:** Database Management Systems (DBMS) — Semester 5
@@ -51,7 +53,8 @@
 
 ---
 
-## 2. Project Overview, Introduction & Problem Statement
+<a id="2-project-overview-introduction--problem-statement"></a>
+## 2. Project Overview, Introduction & Problem Statement &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 2.1 Introduction
 In higher educational institutions, campus recruitment drives represent a pivotal milestone for students and university placement directorates. Coordinating recruitment involves hundreds of participating organizations, thousands of aspiring students across diverse engineering branches, multifaceted eligibility standards, multiple evaluation rounds (coding tests, technical interviews, HR evaluations), and offer letter distributions.
@@ -75,7 +78,8 @@ PlaceX resolves these challenges through a unified, 3-tier database architecture
 
 ---
 
-## 3. System Requirements & Architecture
+<a id="3-system-requirements--architecture"></a>
+## 3. System Requirements & Architecture &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 3.1 System Requirements
 #### Software Requirements
@@ -123,7 +127,8 @@ The application adheres strictly to the classic **3-Tier Client-Server Architect
 
 ---
 
-## 4. ER Diagram & UML Class Diagram
+<a id="4-er-diagram--uml-class-diagram"></a>
+## 4. ER Diagram & UML Class Diagram &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 4.1 Conceptual Entity-Relationship (ER) Diagram
 The Entity-Relationship model establishes the real-world entities, attributes, and cardinality constraints governing the campus placement portal.
@@ -406,7 +411,8 @@ classDiagram
 
 ---
 
-## 5. Relational Schema Mapping & Integrity Constraints
+<a id="5-relational-schema-mapping--integrity-constraints"></a>
+## 5. Relational Schema Mapping & Integrity Constraints &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 5.1 Relational Schema Definitions
 The conceptual model maps directly to 11 relational schemas:
@@ -440,7 +446,8 @@ The table below specifies every constraint enforced across the database relation
 
 ---
 
-## 6. Normalization & Functional Dependencies (1NF to BCNF)
+<a id="6-normalization--functional-dependencies-1nf-to-bcnf"></a>
+## 6. Normalization & Functional Dependencies (1NF to BCNF) &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 6.1 Evolution from Initial Design (First Review to Final Schema)
 During the initial design phase (Review 1), the `eligibility` relation was structured as:
@@ -478,7 +485,8 @@ where `allowed_branch` contained non-atomic comma-separated strings (e.g., `'CSE
 
 ---
 
-## 7. Methodology & Database Design
+<a id="7-methodology--database-design"></a>
+## 7. Methodology & Database Design &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 7.1 Engineering Methodology
 The development of PlaceX followed a systematic database engineering lifecycle:
@@ -504,7 +512,8 @@ The development of PlaceX followed a systematic database engineering lifecycle:
 
 ---
 
-## 8. Advanced SQL Queries & Analytical Operations
+<a id="8-advanced-sql-queries--analytical-operations"></a>
+## 8. Advanced SQL Queries & Analytical Operations &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 PlaceX incorporates production-ready SQL queries that demonstrate multi-table joins, subqueries, aggregations, and conditional analytics.
 
@@ -709,7 +718,8 @@ ON DELETE CASCADE;
 
 ---
 
-## 9. Installation, Setup & Execution Instructions
+<a id="9-installation-setup--execution-instructions"></a>
+## 9. Installation, Setup & Execution Instructions &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 Follow these step-by-step instructions to clone, configure, and launch the portal locally.
 
@@ -796,7 +806,8 @@ http://localhost:3000
 
 ---
 
-### 9.7 Quickstart Setup Checklist & Execution Commands
+<a id="97-quickstart-setup-checklist--execution-commands"></a>
+### 9.7 Quickstart Setup Checklist & Execution Commands &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 A dedicated quick-reference setup checklist and copy-paste command sequence to get the PlaceX portal running from scratch.
 
@@ -883,7 +894,8 @@ http://localhost:3000
 
 ---
 
-## 10. Demonstration Guide & Reproducing Database State
+<a id="10-demonstration-guide--reproducing-database-state"></a>
+## 10. Demonstration Guide & Reproducing Database State &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 To reproduce and verify the exact database and application state presented in reviews:
 
@@ -938,7 +950,8 @@ SELECT 'offer', COUNT(*) FROM offer;
 
 ---
 
-## 11. User Interface & Walkthrough
+<a id="11-user-interface--walkthrough"></a>
+## 11. User Interface & Walkthrough &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 <p align="center">
   <strong>1. Smart Placement Portal Authentication</strong><br>
@@ -964,7 +977,8 @@ SELECT 'offer', COUNT(*) FROM offer;
 
 ---
 
-## 12. Repository Directory Structure
+<a id="12-repository-directory-structure"></a>
+## 12. Repository Directory Structure &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ```
 Collage-Placement-Portal/
@@ -1001,7 +1015,8 @@ Collage-Placement-Portal/
 
 ---
 
-## 13. Project Status, Completed Deliverables & Future Scope
+<a id="13-project-status-completed-deliverables--future-scope"></a>
+## 13. Project Status, Completed Deliverables & Future Scope &nbsp; [⬆ Table of Contents](#table-of-contents)
 
 ### 13.1 Key Completed Features
 * **Full-Stack Search & Filtering Engine (Completed):** Fully implemented dynamic multi-attribute keyword search and dropdown filtering across both Student and Administrator interfaces (filtering placement drives by package LPA, applications by recruitment status, interviews by round, and real-time student/company search).
