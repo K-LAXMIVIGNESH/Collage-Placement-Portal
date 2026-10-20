@@ -15,10 +15,14 @@
   <img src="https://img.shields.io/badge/Architecture-3--Tier%20Client--Server-blue?style=for-the-badge" alt="Architecture" />
   <img src="https://img.shields.io/badge/Normalization-BCNF%20Compliant-success?style=for-the-badge" alt="BCNF" />
   <a href="PlaceX_DBMS_Project_Report.pdf"><img src="https://img.shields.io/badge/Project%20Report-PDF%20Format-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Project Report PDF" /></a>
+  <a href="latex_report/main.tex"><img src="https://img.shields.io/badge/Overleaf%20Report-LaTeX%20Source-green?style=for-the-badge&logo=overleaf&logoColor=white" alt="Overleaf LaTeX" /></a>
 </p>
 
 > [!TIP]
-> **Official Project Report (PDF):** The complete academic project report structured across all 10 required sections is compiled and available directly in the repository: 📄 **[Download / View PlaceX_DBMS_Project_Report.pdf](PlaceX_DBMS_Project_Report.pdf)**.
+> **Official Project Report & LaTeX Source:**
+> - 📄 **Compiled Academic PDF:** [PlaceX_DBMS_Project_Report.pdf](PlaceX_DBMS_Project_Report.pdf)
+> - 🖋️ **Overleaf LaTeX Source:** [latex_report/main.tex](latex_report/main.tex)
+> - 📦 **One-Click Overleaf Upload ZIP:** [PlaceX_Overleaf_LaTeX_Report.zip](PlaceX_Overleaf_LaTeX_Report.zip)
 
 ---
 
