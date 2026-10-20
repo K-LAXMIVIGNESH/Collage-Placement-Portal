@@ -417,17 +417,17 @@ classDiagram
 ### 5.1 Relational Schema Definitions
 The conceptual model maps directly to 11 relational schemas. Primary keys are <u>underlined</u>:
 
-1. **Student** ( <u>`student_id`</u>, `name`, `gender`, `age`, `degree`, `branch`, `cgpa`, `backlogs`, `internships`, `certifications`, `coding_skills`, `communication_skills`, `aptitude_score`, `projects`, `placement_status`, `company_type`, `package_lpa`, `email`, `phone`, `password`, `city`, `state` )
-2. **Company** ( <u>`company_id`</u>, `company_name`, `company_type`, `industry`, `location`, `website`, `email`, `phone` )
-3. **Placement_Officer** ( <u>`officer_id`</u>, `officer_name`, `email`, `phone`, `password` )
-4. **Placement_Drive** ( <u>`drive_id`</u>, `company_id`, `job_role`, `package_lpa`, `vacancies`, `drive_date`, `last_date_to_apply` )
-5. **Eligibility** ( <u>`eligibility_id`</u>, `drive_id`, `minimum_cgpa`, `maximum_backlogs` )
-6. **Eligibility_Allowed_Branch** ( <u>`eligibility_id`</u>, <u>`allowed_branch`</u> )
-7. **HR** ( <u>`hr_id`</u>, `company_id`, `hr_name`, `email`, `phone` )
-8. **Applies** ( <u>`student_id`</u>, <u>`drive_id`</u> )
-9. **Application** ( <u>`application_id`</u>, `student_id`, `drive_id`, `officer_id`, `application_date`, `application_status` )
-10. **Interview** ( <u>`interview_id`</u>, `application_id`, `interview_round`, `interview_date`, `result`, `remarks` )
-11. **Offer** ( <u>`offer_id`</u>, `student_id`, `company_id`, `offer_date`, `package_lpa`, `offer_status` )
+1. **Student** ( <u>student_id</u>, `name`, `gender`, `age`, `degree`, `branch`, `cgpa`, `backlogs`, `internships`, `certifications`, `coding_skills`, `communication_skills`, `aptitude_score`, `projects`, `placement_status`, `company_type`, `package_lpa`, `email`, `phone`, `password`, `city`, `state` )
+2. **Company** ( <u>company_id</u>, `company_name`, `company_type`, `industry`, `location`, `website`, `email`, `phone` )
+3. **Placement_Officer** ( <u>officer_id</u>, `officer_name`, `email`, `phone`, `password` )
+4. **Placement_Drive** ( <u>drive_id</u>, `company_id`, `job_role`, `package_lpa`, `vacancies`, `drive_date`, `last_date_to_apply` )
+5. **Eligibility** ( <u>eligibility_id</u>, `drive_id`, `minimum_cgpa`, `maximum_backlogs` )
+6. **Eligibility_Allowed_Branch** ( <u>eligibility_id</u>, <u>allowed_branch</u> )
+7. **HR** ( <u>hr_id</u>, `company_id`, `hr_name`, `email`, `phone` )
+8. **Applies** ( <u>student_id</u>, <u>drive_id</u> )
+9. **Application** ( <u>application_id</u>, `student_id`, `drive_id`, `officer_id`, `application_date`, `application_status` )
+10. **Interview** ( <u>interview_id</u>, `application_id`, `interview_round`, `interview_date`, `result`, `remarks` )
+11. **Offer** ( <u>offer_id</u>, `student_id`, `company_id`, `offer_date`, `package_lpa`, `offer_status` )
 
 ---
 
